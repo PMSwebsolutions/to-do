@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.to_do.MainActivity">
+
+    <item
+        android:id="@+id/menu_task"
+        android:orderInCategory="100"
+        android:title="To-Do Tasks"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_add"
+        android:orderInCategory="100"
+        android:title="Add New To-Do"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_completed"
+        android:orderInCategory="100"
+        android:title="Completed To-Do's"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_about"
+        android:orderInCategory="100"
+        android:title="About Us"
+        app:showAsAction="never" />
+</menu>
