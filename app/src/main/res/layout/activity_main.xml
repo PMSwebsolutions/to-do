@@ -170,14 +170,13 @@
             android:textColor="@android:color/background_dark"
             android:textSize="36sp"
             android:visibility="invisible"
-            app:fontFamily="@font/aladin" />
+            app:fontFamily="@font/aladin"
+            tools:visibility="invisible" />
 
         <ListView
             android:id="@+id/task_listview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20sp"
-            android:paddingRight="20sp" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </RelativeLayout>

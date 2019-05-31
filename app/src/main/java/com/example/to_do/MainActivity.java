@@ -6,11 +6,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -19,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,10 +37,18 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tasks_no;
 
+    ArrayList<String> task_listhead;
+    ArrayList<String> task_listDesc;
+    ArrayList<String> task_listExp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        task_listhead = new ArrayList<String>();
+        task_listDesc = new ArrayList<String>();
+        task_listExp = new ArrayList<String>();
 
         aboutus = findViewById(R.id.aboutus);
         aboutus.setVisibility(View.INVISIBLE);
@@ -79,24 +91,65 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewTasks(){
         tasks_no = findViewById(R.id.tasks_no);
+        tasks_no.setVisibility(View.VISIBLE);
         Cursor res = databaseHelper.getListData();
         if(res.getCount() == 0){
             tasks_no.setVisibility(View.VISIBLE);
 
         }else {
-            ArrayList<String> task_list = new ArrayList<String>();
+
+            task_listhead.clear();
+            task_listDesc.clear();
+            task_listExp.clear();
 
             while (res.moveToNext()){
-                task_list.add(res.getString(1));
+                task_listhead.add(res.getString(1));
+                task_listDesc.add(res.getString(2));
+                task_listExp.add(res.getString(3));
             }
 
             task_listview = findViewById(R.id.task_listview);
-            ListAdapter listAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, task_list);
-            task_listview.setAdapter(listAdapter);
-            tasks_no.setText("To Do's");
+            CustomAdapter customAdapter = new CustomAdapter();
+            task_listview.setAdapter(customAdapter);
+            tasks_no.setVisibility(View.GONE);
         }
 
 
+    }
+
+
+    class CustomAdapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return task_listhead.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.list_layout,null);
+
+            TextView texthead = convertView.findViewById(R.id.textHead);
+            texthead.setText(task_listhead.get(position));
+
+            TextView textDesc = convertView.findViewById(R.id.textDesc);
+            textDesc.setText(task_listDesc.get(position));
+
+            TextView textExp = convertView.findViewById(R.id.textExp);
+            textExp.setText(task_listExp.get(position));
+
+            return convertView;
+        }
     }
 
     @Override
