@@ -9,18 +9,34 @@
         android:id="@+id/imageView"
         android:layout_width="66dp"
         android:layout_height="40dp"
-        app:srcCompat="@drawable/rightarrow"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        app:srcCompat="@drawable/rightarrow" />
 
     <TextView
         android:id="@+id/textHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_toRightOf="@id/imageView"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@android:color/background_dark"
         android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description      :"
+        android:layout_below="@id/textHead"
+        android:layout_marginLeft="15dp"
+        android:textSize="20dp"/>
+
     <TextView
         android:id="@+id/textDesc"
         android:layout_width="match_parent"
@@ -29,7 +45,8 @@
         android:textSize="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_below="@id/textHead"/>
+        android:layout_below="@id/textHead"
+        android:layout_toRightOf="@id/textView4" />
 
     <TextView
         android:id="@+id/Exp"
@@ -37,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textDesc"
         android:layout_marginLeft="15dp"
-        android:text="Deadline:"
+        android:text="Deadline           :"
         android:textSize="20dp" />
 
     <TextView
@@ -48,5 +65,24 @@
         android:layout_marginLeft="15dp"
         android:text="TextView"
         android:layout_below="@id/textDesc"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Exp"
+        android:layout_marginLeft="15dp"
+        android:text="Completed On :"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textExp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/Exp"
+        android:text="TextView"
         android:textSize="20dp" />
 </RelativeLayout>

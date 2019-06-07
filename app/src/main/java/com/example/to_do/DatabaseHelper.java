@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "tasks.db";
@@ -15,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_3 = "DESCRIPTION";
     public static final String COL_4 = "EXPIRY";
     public static final String COL_5 = "PENDING";
+    public static final String COL_6 = "COMPLETED";
 
 
     public DatabaseHelper(Context context) {
@@ -24,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +  " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TASK TEXT, DESCRIPTION TEXT, EXPIRY TEXT, PENDING TEXT)");
+        db.execSQL("create table " + TABLE_NAME +  " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TASK TEXT, DESCRIPTION TEXT, EXPIRY TEXT, PENDING TEXT, COMPLETED TEXT)");
 
     }
 
@@ -40,7 +44,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2,task);
         contentValues.put(COL_3,description);
         contentValues.put(COL_4,expiry);
-        contentValues.put(COL_5,"y");
+        contentValues.put(COL_5,"Y");
+        contentValues.put(COL_6,"-");
         long result = db.insert(TABLE_NAME,null,contentValues);
         if(result == -1)
             return false;
@@ -50,7 +55,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getListData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * FROM " + TABLE_NAME,null);
+        Cursor res = db.rawQuery("select * FROM " + TABLE_NAME + " where PENDING='Y' ",null);
+        return res;
+    }
+
+    public Integer deleteData(String ids){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME,"ID = ?",new String[] {ids});
+    }
+
+    public boolean completeData(String ids, String task, String description, String expiry){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1,ids);
+        contentValues.put(COL_2,task);
+        contentValues.put(COL_3,description);
+        contentValues.put(COL_4,expiry);
+        contentValues.put(COL_5,"N");
+        String date;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = LocalDate.now().toString();
+        }else {
+            date = "NaN";
+        }
+        contentValues.put(COL_6,date);
+        Integer result = db.update(TABLE_NAME,contentValues, "ID = ?", new String[]{ ids });
+        if(result >0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean editData(String ids, String task, String description, String expiry){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1,ids);
+        contentValues.put(COL_2,task);
+        contentValues.put(COL_3,description);
+        contentValues.put(COL_4,expiry);
+        contentValues.put(COL_5,"Y");
+        db.update(TABLE_NAME,contentValues, "ID = ?", new String[]{ ids });
+        return true;
+    }
+
+    public Cursor getCompleteData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * FROM " + TABLE_NAME + " where PENDING='N' ",null);
         return res;
     }
 

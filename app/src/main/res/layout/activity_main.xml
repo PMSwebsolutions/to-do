@@ -10,6 +10,8 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
+
+    <!-- ====================  ABOUT US  ==================== -->
     <LinearLayout
         android:id="@+id/aboutus"
         android:layout_width="match_parent"
@@ -60,12 +62,16 @@
             android:textSize="24sp" />
 
     </LinearLayout>
+    <!-- ====================  END ABOUT US  ==================== -->
 
+
+    <!-- ====================  ADD TASK  ==================== -->
     <LinearLayout
         android:id="@+id/add_task"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:visibility="invisible"
         tools:visibility="invisible">
 
         <Space
@@ -132,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Date"
-                android:inputType="date" />
+                android:inputType="none" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -150,12 +156,16 @@
             android:textSize="25sp" />
 
     </LinearLayout>
+    <!-- ====================  END ADD TASK  ==================== -->
 
+
+    <!-- ====================  TASKS  ==================== -->
     <LinearLayout
         android:id="@+id/tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:visibility="invisible">
 
         <Space
             android:layout_width="match_parent"
@@ -178,5 +188,235 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+    <!-- ====================  END TASKS  ==================== -->
 
+
+
+
+    <!-- ====================  DETAIL TASK  ==================== -->
+    <RelativeLayout
+        android:id="@+id/detail_task"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/detail_taskhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@android:color/background_dark"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_taskhead"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="33dp"
+            android:text="Description: "
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/detail_taskdesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_taskhead"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@id/textView9"
+            android:text="TextView"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/detail_taskdeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_taskdesc"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Deadline     : "
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/detail_taskexp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_taskdesc"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/detail_taskdeadline"
+            android:text="TextView"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/detail_editbtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_taskexp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/holo_green_dark"
+            android:text="EDIT "
+            android:textColor="@android:color/background_light" />
+
+        <Button
+            android:id="@+id/detail_deletebtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_taskexp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@id/detail_editbtn"
+            android:background="@color/colorAccent"
+            android:text="DELETE"
+            android:textColor="@android:color/background_light" />
+
+        <Button
+            android:id="@+id/detail_completebtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_taskexp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@id/detail_deletebtn"
+            android:background="@color/design_default_color_primary_dark"
+            android:text="COMPLETED"
+            android:textColor="@android:color/background_light" />
+
+
+    </RelativeLayout>
+
+    <!-- ====================  END DETAIL TASK  ==================== -->
+
+
+
+
+    <!-- ====================  EDIT TASK  ==================== -->
+    <LinearLayout
+        android:id="@+id/edit_task"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        tools:visibility="invisible">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="93dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aladin"
+            android:gravity="center"
+            android:text="Edit Your Task"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="36sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp">
+
+            <EditText
+                android:id="@+id/edit_taskhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Task" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp">
+
+            <EditText
+                android:id="@+id/edit_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="textMultiLine" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp">
+
+            <EditText
+                android:id="@+id/edit_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date"
+                android:inputType="none" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/edit_taskbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="UPDATE INFO"
+            android:textColor="@color/colorAccent"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <!-- ====================  END EDIT TASK  ==================== -->
+
+
+
+
+    <!-- ====================  COMPLETE TASK  ==================== -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/complete_task">
+
+        <TextView
+            android:id="@+id/complete_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No Completed Tasks"
+            android:textColor="@android:color/background_dark"
+            android:textSize="36sp"
+            app:fontFamily="@font/aladin"
+            android:layout_marginTop="75dp"/>
+
+        <ListView
+            android:id="@+id/complete_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/complete_no"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+    <!-- ====================  END COMPLETE TASK  ==================== -->
 </RelativeLayout>
